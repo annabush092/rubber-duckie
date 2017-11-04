@@ -11,14 +11,13 @@ export default class WhiteKey extends React.Component {
       border: "1px solid black",
       width: '3%',
       cssFloat: 'left',
-      paddingTop: '15%'
+      paddingTop: '20%'
     }
   }
 
-
   render() {
     return(
-      <div style={this.keyStyle()} id={this.props.id}>{this.props.note}</div>
+      <div style={this.keyStyle()} id={this.props.id}/>
     )
   }
 }

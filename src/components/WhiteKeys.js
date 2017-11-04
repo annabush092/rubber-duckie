@@ -15,10 +15,13 @@ export default class WhiteKeys extends React.Component {
     return fourOctaves
   }
 
-  render() {
+  styleWhiteKeys() {
+    return {overflow: 'hidden'}
+  }
 
+  render() {
     return (
-      <div>
+      <div id="white-keys" style={this.styleWhiteKeys()}>
         {this.fourOctaves()}
       </div>
     )
