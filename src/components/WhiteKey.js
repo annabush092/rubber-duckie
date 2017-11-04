@@ -2,21 +2,23 @@ import React from 'react';
 
 export default class WhiteKey extends React.Component {
   // props = {
-  //   windowHeight: num,
-  //   windowWidth: num
+  //   note: 'a', 'b', etc
+  //   id: 'c1'...'c5' 'note-octave'
   // }
 
   keyStyle() {
     return {
-      border: "thin solid black",
-      width: `${this.props.windowWidth / 32}px`,
-      height: `${this.props.windowHeight / 10}px`
+      border: "1px solid black",
+      width: '3%',
+      cssFloat: 'left',
+      paddingTop: '15%'
     }
   }
 
+
   render() {
     return(
-      <div style={this.keyStyle()}>white</div>
+      <div style={this.keyStyle()} id={this.props.id}>{this.props.note}</div>
     )
   }
 }

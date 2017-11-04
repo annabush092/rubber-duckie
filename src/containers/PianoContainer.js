@@ -7,8 +7,8 @@ export default class PianoContainer extends React.Component {
   render() {
     return (
       <div style={containerStyle}>
-        <img src={pianoTemplate} style={picStyle}/>
-        <img src={pianoTemplate} style={picStyle}/>
+        <img src={pianoTemplate} alt="piano template" style={picStyle}/>
+        <img src={pianoTemplate} alt="piano template" style={picStyle}/>
         <WhiteKeys/>
       </div>
     )
