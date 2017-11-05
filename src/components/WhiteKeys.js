@@ -1,7 +1,12 @@
 import React from 'react';
+import {whiteNotes} from '../resources/notes'
 import WhiteKey from './WhiteKey'
 
 export default class WhiteKeys extends React.Component {
+  // props = {
+  //   note: null/noteNumber
+  // }
+
   fourOctaves() {
     const fourOctaves = []
     for(let i=0; i<3; i++) {
@@ -17,6 +22,13 @@ export default class WhiteKeys extends React.Component {
 
   styleWhiteKeys() {
     return {overflow: 'hidden'}
+  }
+
+  findNote() {
+    if(whiteNotes[this.props.note]) {
+      console.log("made it")
+      //light up that note
+    }
   }
 
   render() {

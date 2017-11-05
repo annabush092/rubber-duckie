@@ -1,5 +1,4 @@
 import React from 'react';
-import {notes} from '../resources/notes'
 import WhiteKeys from '../components/WhiteKeys'
 import PlayForm from '../components/PlayForm'
 
@@ -19,14 +18,13 @@ export default class PianoContainer extends React.Component {
   }
 
   playNote(note) {
-    this.setState({notePlaying: note}, ()=>{console.log("state is: ", this.state.notePlaying)})
-    //interpret note, send to Keys as prop
+    this.setState({notePlaying: note})
   }
 
   render() {
     return (
       <div style={this.styleContainer()} id="piano-container">
-        <WhiteKeys />
+        <WhiteKeys note={this.state.notePlaying}/>
         <PlayForm onNoteChange={this.playNote.bind(this)}/>
       </div>
     )
