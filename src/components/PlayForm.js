@@ -1,11 +1,15 @@
 import React from 'react';
 
-export default class NoteForm extends React.Component {
+export default class PlayForm extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    // props = {
+    //   onNoteChange(keyCode/null): playNote() inside PianoContainer
+    // }
     this.state = {
-      focused: true
+      focused: true,
+      keyIsDown: false
     }
   }
 
@@ -14,7 +18,6 @@ export default class NoteForm extends React.Component {
       padding: '20px'
     }
   }
-
   styleTextarea() {
     return {
       width: '90%',
@@ -27,11 +30,9 @@ export default class NoteForm extends React.Component {
   handleBlur() {
     this.setState({focused: false})
   }
-
   handleFocus() {
     this.setState({focused: true})
   }
-
   warnUser() {
     const styleLabel = {color: 'red'}
     if(this.state.focused !== true) {
@@ -43,15 +44,31 @@ export default class NoteForm extends React.Component {
     }
   }
 
+  handleKeyDown(ev) {
+    ev.preventDefault()
+    let note = ev.which
+    if(this.state.keyIsDown !== true) {
+      this.setState({keyIsDown: true})
+      this.props.onNoteChange(note)
+    }
+  }
+  handleKeyUp(ev) {
+    ev.preventDefault()
+    this.setState({keyIsDown: false})
+    this.props.onNoteChange(null)
+  }
+
   render() {
     return(
       <form style={this.styleForm()}>
         {this.warnUser()}
         <textarea
           autoFocus
-          style={this.styleTextarea()}
           onBlur={this.handleBlur.bind(this)}
           onFocus={this.handleFocus.bind(this)}
+          style={this.styleTextarea()}
+          onKeyDown={this.handleKeyDown.bind(this)}
+          onKeyUp={this.handleKeyUp.bind(this)}
         />
       </form>
     )

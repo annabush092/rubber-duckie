@@ -9,7 +9,7 @@ export default class WhiteKey extends React.Component {
   keyStyle() {
     return {
       border: "1px solid black",
-      width: '3%',
+      width: '4%',
       cssFloat: 'left',
       paddingTop: '20%'
     }
