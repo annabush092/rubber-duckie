@@ -4,20 +4,21 @@ import WhiteKey from './WhiteKey'
 
 export default class WhiteKeys extends React.Component {
   // props = {
-  //   note: null/noteNumber
+  //   notes: [noteNumbers]
   // }
 
   styleWhiteKeys() {
     return {overflow: 'hidden'}
   }
 
-  findNote() {
-    if(whiteNotes[this.props.note]) {
-      return whiteNotes[this.props.note]
-    }else {
-      return false
-    }
-  }
+  findKeys() {
+    return this.props.notes.reduce(function(acc, note){
+      if(whiteNotes[note] !== undefined) {
+        acc.push(whiteNotes[note])
+      }
+      return acc
+    }, [])
+  } //returns array of note names ['c4', 'b3', etc]
 
   threeOctaves() {
     const threeOctaves = []
@@ -25,15 +26,13 @@ export default class WhiteKeys extends React.Component {
     for(let i=0; i<22; i++) {
       let myKey = `${noteArr[i%7]}${Math.floor(i/7) + 1}`
       let myPlaying = false
-      if(this.findNote() === myKey) {
+      if(this.findKeys().includes(myKey)) {
         myPlaying = true
       }
       threeOctaves.push(<WhiteKey key={myKey} id={myKey} note={noteArr[i%7]} playing={myPlaying}/>)
     }
     return threeOctaves
   }
-
-
 
   render() {
     return (

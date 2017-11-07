@@ -28,12 +28,14 @@ export default class WhiteKey extends React.Component {
   }
 
   playNote() {
-    this.cAudio.currentTime = 2;
     this.cAudio.play()
+    let myNote = this.props.id.toUpperCase()
+    console.log("playing ", myNote)
   }
   stopNote() {
-    this.cAudio.pause()
-    this.cAudio.currentTime = 2;
+      this.cAudio.pause()
+      this.cAudio.currentTime = 2;
+      console.log('stopping note')
   }
 
   render() {

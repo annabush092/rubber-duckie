@@ -6,7 +6,7 @@ export default class PianoContainer extends React.Component {
   constructor() {
     super()
     this.state = {
-      notePlaying: null
+      notesPlaying: []
     }
   }
 
@@ -17,15 +17,30 @@ export default class PianoContainer extends React.Component {
     }
   }
 
+  findNote(note) {
+    return this.state.notesPlaying.findIndex(n=>(n===note))
+    //returns index of note or -1 if not found
+  }
   playNote(note) {
-    this.setState({notePlaying: note})
+    if(this.findNote(note) === -1){
+      this.setState({notesPlaying: [...this.state.notesPlaying, note]})
+    }
+  }
+  stopNote(note) {
+    let noteIndex = this.findNote(note)
+    if(noteIndex !== -1) {
+      let copy = [...this.state.notesPlaying]
+      this.setState({
+        notesPlaying: (copy.slice(0, noteIndex)).concat(copy.slice(noteIndex+1, copy.length))
+      })
+    }
   }
 
   render() {
     return (
       <div style={this.styleContainer()} id="piano-container">
-        <WhiteKeys note={this.state.notePlaying}/>
-        <PlayForm onNoteChange={this.playNote.bind(this)}/>
+        <WhiteKeys notes={this.state.notesPlaying}/>
+        <PlayForm keysDown={this.state.notesPlaying} noteBegin={this.playNote.bind(this)} noteEnd={this.stopNote.bind(this)}/>
       </div>
     )
   }

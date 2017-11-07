@@ -5,11 +5,12 @@ export default class PlayForm extends React.Component {
   constructor(props) {
     super(props)
     // props = {
-    //   onNoteChange(keyCode/null): playNote() inside PianoContainer
+    //   noteBegin(keyCode): playNote() inside PianoContainer
+    //   noteEnd(keyCode): stopNote() inside PianoContainer
+    //   keysDown: []
     // }
     this.state = {
-      focused: true,
-      keyIsDown: false
+      focused: true
     }
   }
 
@@ -47,15 +48,14 @@ export default class PlayForm extends React.Component {
   handleKeyDown(ev) {
     ev.preventDefault()
     let note = ev.which
-    if(this.state.keyIsDown !== true) {
-      this.setState({keyIsDown: true})
-      this.props.onNoteChange(note)
+    if(!(this.props.keysDown.includes(note))) {
+      this.props.noteBegin(note)
     }
   }
   handleKeyUp(ev) {
     ev.preventDefault()
-    this.setState({keyIsDown: false})
-    this.props.onNoteChange(null)
+    let note = ev.which
+    this.props.noteEnd(note)
   }
 
   render() {
