@@ -13,9 +13,10 @@ export default class WhiteKey extends React.Component {
   // }
 
   keyStyle() {
+    let colorMatcher = {c: 'red', d: 'orange', e: 'yellow', f: 'green', g: 'blue', a: 'purple', b: 'pink'}
     let myColor = 'white'
     if(this.props.playing) {
-      myColor = 'blue'
+      myColor = colorMatcher[this.props.note]
     }
     return {
       border: "1px solid black",
