@@ -8,7 +8,13 @@ export default class WhiteKeys extends React.Component {
   // }
 
   styleWhiteKeys() {
-    return {overflow: 'hidden'}
+    return {
+      display: 'flex',
+      position: 'absolute',
+      top: '50px',
+      left: '5%',
+      width: '90%',
+      zIndex: '-1'}
   }
 
   findKeys() {

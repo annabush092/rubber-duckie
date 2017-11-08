@@ -19,9 +19,9 @@ export default class WhiteKey extends React.Component {
       myColor = colorMatcher[this.props.note]
     }
     return {
+      boxSizing: 'border-box',
       border: "1px solid black",
-      width: '4%',
-      cssFloat: 'left',
+      width: '4.5%',
       paddingTop: '20%',
       background: myColor
     }

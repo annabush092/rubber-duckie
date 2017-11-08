@@ -1,5 +1,6 @@
 import React from 'react';
-import WhiteKeys from '../components/WhiteKeys'
+import WhiteKeys from '../components/WhiteKeys';
+import BlackKeys from '../components/BlackKeys'
 
 export default class PianoContainer extends React.Component {
   constructor() {
@@ -26,8 +27,7 @@ export default class PianoContainer extends React.Component {
 
   styleContainer() {
     return {
-      width: '90%',
-      padding: '50px'
+      width: '90%'
     }
   }
 
@@ -52,6 +52,7 @@ export default class PianoContainer extends React.Component {
     return (
       <div style={this.styleContainer()} id="piano-container">
         <WhiteKeys notes={this.state.notesPlaying}/>
+        <BlackKeys notes={this.state.notesPlaying}/>
       </div>
     )
   }
