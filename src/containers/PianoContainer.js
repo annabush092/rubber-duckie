@@ -1,6 +1,5 @@
 import React from 'react';
 import WhiteKeys from '../components/WhiteKeys'
-import PlayForm from '../components/PlayForm'
 
 export default class PianoContainer extends React.Component {
   constructor() {
@@ -8,6 +7,21 @@ export default class PianoContainer extends React.Component {
     this.state = {
       notesPlaying: []
     }
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', (ev) => {
+      let note = ev.which
+      if(!(this.state.notesPlaying.includes(note))) {
+        this.playNote(note)
+      }
+    })
+    window.addEventListener('keyup', (ev) => {
+      let note = ev.which
+      if(this.state.notesPlaying.includes(note)) {
+        this.stopNote(note)
+      }
+    })
   }
 
   styleContainer() {
@@ -28,19 +42,16 @@ export default class PianoContainer extends React.Component {
   }
   stopNote(note) {
     let noteIndex = this.findNote(note)
-    if(noteIndex !== -1) {
-      let copy = [...this.state.notesPlaying]
-      this.setState({
-        notesPlaying: (copy.slice(0, noteIndex)).concat(copy.slice(noteIndex+1, copy.length))
-      })
-    }
+    let copy = [...this.state.notesPlaying]
+    this.setState({
+      notesPlaying: (copy.slice(0, noteIndex)).concat(copy.slice(noteIndex+1, copy.length))
+    })
   }
 
   render() {
     return (
       <div style={this.styleContainer()} id="piano-container">
         <WhiteKeys notes={this.state.notesPlaying}/>
-        <PlayForm keysDown={this.state.notesPlaying} noteBegin={this.playNote.bind(this)} noteEnd={this.stopNote.bind(this)}/>
       </div>
     )
   }

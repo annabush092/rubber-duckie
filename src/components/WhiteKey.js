@@ -1,11 +1,10 @@
 import React from 'react';
-import AudioC from '../resources/C.mp3'
 
 export default class WhiteKey extends React.Component {
 
   constructor(props) {
     super(props)
-    this.cAudio = new Audio(AudioC)
+    this.audio = new Audio(require('../resources/' + props.note.toUpperCase() + '.mp3'))
   }
   // props = {
   //   note: 'a', 'b', etc
@@ -28,14 +27,19 @@ export default class WhiteKey extends React.Component {
   }
 
   playNote() {
-    this.cAudio.play()
-    let myNote = this.props.id.toUpperCase()
-    console.log("playing ", myNote)
+    if(this.audio.paused) {
+      this.audio.currentTime = 2
+      this.audio.play()
+
+      let myNote = this.props.id.toUpperCase()
+      console.log("playing ", myNote)
+    }
   }
   stopNote() {
-      this.cAudio.pause()
-      this.cAudio.currentTime = 2;
+    if(!this.audio.paused) {
+      this.audio.pause()
       console.log('stopping note')
+    }
   }
 
   render() {
