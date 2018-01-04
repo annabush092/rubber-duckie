@@ -12,12 +12,14 @@ export default class PianoContainer extends React.Component {
 
   componentDidMount() {
     window.addEventListener('keydown', (ev) => {
+      ev.preventDefault()
       let note = ev.which
       if(!(this.state.notesPlaying.includes(note))) {
         this.playNote(note)
       }
     })
     window.addEventListener('keyup', (ev) => {
+      ev.preventDefault()
       let note = ev.which
       if(this.state.notesPlaying.includes(note)) {
         this.stopNote(note)
