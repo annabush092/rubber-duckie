@@ -4,6 +4,8 @@ A piano you play organ-style with your computer keyboard.
 
 Demo: https://youtu.be/52g2MEpj4VM
 
+Built with React
+
 Special thank you to Richard Schwartz's Tuning CD (https://www.amazon.com/Tuning-C-D-440-Richard-Schwartz/dp/B002COP51Q), which I used for sample notes to test this app. These mp3 files were only used for the educational purpose of building this app, and should NOT be copied for any other use. To buy the sound files, you can find the CD on Amazon at the link provided above.
 
 Future sounds will hopefully include more than one octave and be a bit prettier to listen to. Not that the Tuning CD isn't beautiful in its own special way...
